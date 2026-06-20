@@ -1,3 +1,5 @@
+import 'package:flutter/painting.dart';
+
 class PlatformData {
   final String key;
   final String name;
@@ -72,6 +74,3 @@ class Product {
   double get allTimeHigh =>
       priceHistory.map((p) => p.price).reduce((a, b) => a > b ? a : b);
 }
-
-// ignore_for_file: depend_on_referenced_packages
-import 'package:flutter/painting.dart';
