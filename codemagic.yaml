@@ -1,0 +1,29 @@
+workflows:
+  android-release:
+    name: PriceRadar Android APK
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      java: 17
+
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          cd price_radar
+          flutter pub get
+
+      - name: Build release APK
+        script: |
+          cd price_radar
+          flutter build apk --release
+
+    artifacts:
+      - price_radar/build/app/outputs/flutter-apk/app-release.apk
+
+    publishing:
+      email:
+        recipients:
+          - elangovinoth999@gmail.com        # ← Change this to your email
+        notify:
+          success: true
+          failure: true
