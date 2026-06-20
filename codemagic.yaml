@@ -2,28 +2,25 @@ workflows:
   android-release:
     name: PriceRadar Android APK
     max_build_duration: 60
+    instance_type: mac_mini_m2    # use mac_mini_m2 or linux_x2
     environment:
       flutter: stable
       java: 17
 
     scripts:
       - name: Get Flutter packages
-        script: |
-          cd price_radar
-          flutter pub get
+        script: flutter pub get
 
-      - name: Build release APK
-        script: |
-          cd price_radar
-          flutter build apk --release
+      - name: Build Android APK
+        script: flutter build apk --release --no-tree-shake-icons
 
     artifacts:
-      - price_radar/build/app/outputs/flutter-apk/app-release.apk
+      - build/app/outputs/flutter-apk/app-release.apk
 
     publishing:
       email:
         recipients:
-          - elangovinoth999@gmail.com        # ← Change this to your email
+          - elangovinoth999@gmail.com        # ← your email here
         notify:
           success: true
           failure: true
